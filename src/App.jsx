@@ -1,10 +1,9 @@
-import React from 'react';
-import './components/login.css';
-import Login from './components/dashboard';
+import Dashboard from './components/dashboard';
+
 function App() {
   return (
     <div className="App">
-      <Login />
+      <Dashboard />
     </div>
   );
 }
