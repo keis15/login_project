@@ -99,6 +99,8 @@ const incidents = [
   },
 ];
 
+const defaultIncidentId = incidents[0].id;
+
 const createMarkerIcon = (severity, isSelected) => {
   const severityClass = severityToClass[severity];
   return L.divIcon({
@@ -115,7 +117,7 @@ const Dashboard = () => {
   const mapRef = useRef(null);
   const mapInstanceRef = useRef(null);
   const markerRefs = useRef({});
-  const [selectedIncidentId, setSelectedIncidentId] = useState(incidents[0].id);
+  const [selectedIncidentId, setSelectedIncidentId] = useState(defaultIncidentId);
   const selectedIncident =
     incidents.find((incident) => incident.id === selectedIncidentId) ?? incidents[0];
 
@@ -143,7 +145,7 @@ const Dashboard = () => {
 
     incidents.forEach((incident) => {
       const marker = L.marker(incident.position, {
-        icon: createMarkerIcon(incident.severity, incident.id === selectedIncidentId),
+        icon: createMarkerIcon(incident.severity, incident.id === defaultIncidentId),
       })
         .addTo(map)
         .bindPopup(`<strong>${incident.label}</strong><br/>${incident.location}`);
